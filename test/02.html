@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        .wrap{position:relative;}
+        .cont{height:100vh;border:4px dashed #322fd9}
+        .cont02{height:150vh;overflow-x:hidden;}
+        .cont02 .popol_area{position:relative;display:flex;width:100vw;height:100vh;border:5px solid red;}
+        .cont02 .popol_area .txt_area{display:flex;justify-content:center;align-items:center;width:65vw;border:5px solid rgb(0, 255, 47);flex-shrink:0;}
+        .cont02 .popol_area .txt_area h2{font-size:70px;font-weight: bold;}
+        .cont02 .popol_area .img_area{width:100vw;border:5px solid rgb(255, 0, 225);flex-shrink:0;background:#ccc}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="cont cont01">cont01</div>
+        <div class="cont cont02">
+            <div class="popol_area">
+                <div class="txt_area"><h2>Lorem ipsum dolor sit.</h2></div>
+                <div class="img_area">
+                    <ul>
+                        <li><img src="https://placehold.co/600x400"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="cont cont03"></div>
+        <div class="cont cont04"></div>
+    </div>
+    <!-- gsap -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.timeline({
+            scrollTrigger:{
+                trigger:'.cont02',
+                start:'0% 0%',
+                end:'100% 0%',
+                scrub:2,
+                pin:true,
+                markers:true
+            }
+        })
+        .to('.cont02 .popol_area',{'transform':'translateX(-65vw)','duration':'10','ease':'none'},2)
+    </script>
+</body>
+</html>

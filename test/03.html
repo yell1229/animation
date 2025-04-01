@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Manrope&family=Noto+Sans+KR:wght@400;500&display=swap');
+        body {font-family: 'MonumentGrotesk', sans-serif; font-size:0.85vw;padding-bottom:500px;}
+        .en{font-family: 'kanit', sans-serif;font-weight: 600;}
+        .en2{font-family: 'Manrope', sans-serif;font-weight: 400;}
+        .wrap{margin:0 auto;position:relative;overflow:hidden;background: #111606;}
+        img{filter:brightness(50%)}
+        .visual{position:relative;padding:0;overflow: hidden;}
+        .visual img{width:100%;}
+        .visual h1{font-size:9vw;color:#fff;position:absolute;top:32%;left:50%;transform: translateX(-50%);line-height:1;width:60%;font-weight: 400;line-height: 1;opacity: 0;}
+        .visual h1 span{display:block;letter-spacing: -2px;font-size: 5vw;-webkit-text-stroke: 2px #b1dd40; color:transparent}
+        section{padding:50px 0}
+        section .inner{width:80%;margin:0 auto;}
+        .infoProject .inner{display:flex;justify-content: space-between;flex-wrap:wrap;}
+        .infoProject .inner .imgBox{width:70%}
+        .infoProject .inner .imgBox img{width:100%}
+        .infoProject .inner .textBox{width:25%}
+        .infoProject .inner .textBox span{display:block;line-height:1.6;color:#fff;}
+        .infoProject .inner .textBox span.title{color:#b1dd40;text-transform: uppercase;}
+        .infoProject .inner .textBox .text{margin-bottom:30px;}
+        .concept{padding-bottom:100px;}
+        .concept ul{display:flex;justify-content: space-between;flex-wrap: wrap;}
+        .concept ul li{width:28%;margin-top:200px;}
+        .concept ul li:nth-child(2n){margin-top:0;}
+        .concept ul li img{width:100%;}
+        .concept ul.size{margin-top:150px}
+        .concept ul.size li:nth-child(1){width:32%;margin-left:25%}
+        .concept ul.size li:nth-child(2){width:40%;margin-top:-50px}
+        .concept ul.size li:nth-child(3){width:60%;margin-top:10%}
+        .concept .textBox{position:relative;padding-top:10%;}
+        .concept .textBox .title{position:absolute;top:-30%;font-size:8vw;-webkit-text-stroke: 2px #b1dd40; color:transparent}
+        .concept .textBox .span{line-height:1.6;color:#fff;display:block;line-height:1.5vw}
+        .concept .textBox.size .title{font-size:4.5vw;line-height:1;left:0;}
+        .concept .textBox.size .title b{font-weight:400;color:#fff;-webkit-text-stroke:0; display:block;}
+        /* imgBox */
+        .imgBox{position:relative;overflow: hidden;transition:all 0.4s;}
+        .imgBox:before{content:'';width:100%;height:100%;background-color: #b1dd40;position:absolute;top:0;left:0;transition:all 0.8s;transition-delay:0.4s;z-index:2;}
+        .imgBox:after{content:'';width:100%;height:100%;background-color: #111606;position:absolute;top:0;left:0;transition:all 0.8s;z-index:3;}
+        .imgBox.active:before{height:0;}
+        .imgBox.active:after{height:0;}
+        /* textBox */
+        .textBox span{margin:50px 0;transition:all 0.8s; opacity: 0;}
+        .textBox.active span{margin:0;opacity: 1;}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <section class="visual">
+            <img src="images/img_1.png" alt="">
+            <h1 class="en"><span>Lorem ipsum </span>Lorem ipsum dolor sit ametamet.</h1>
+        </section>
+        <section class="infoProject">
+            <div class="inner">
+                <p class="imgBox"><img src="images/img_2.jpg" alt=""></p>
+                <div class="textBox">
+                    <span class="title en">recommended destination</span>
+                    <span class="text">Thailand</span>
+                    <span class="title en">Travel eriod</span>
+                    <span class="text">5 days 3 nights</span>
+                    <span class="title en">visiting city</span>
+                    <span class="text">Incheon > Bangkok > Pattaya > Incheon</span>
+                    <span class="title en">transportation</span>
+                    <span class="text">Korean Air, Jeju Air, Asiana Airlines</span>
+                    <span class="title en">suggestion! Pattaya</span>
+                    <span class="text">
+                        Located on the eastern side of the Gulf of Thailand, Pattaya is known as the “Hawaii of the East” for its sunny beaches, 
+                       beautiful beaches and delicious seafood. The 15-kilometer-long coastline with lapping crystal-clear waters is a favorite 
+                      tourist destination for sunbathers and beaches for aficionados from around the world. Water sports are also plentiful, 
+                      and jet skiing, parasailing and diving are a must-try if you are traveling here.
+                  </span>
+                </div>
+            </div>
+        </section>
+        <section class="concept">
+            <div class="inner">
+                <ul>
+                    <li><p class="imgBox"><img src="images/img_3.jpg" alt=""></p></li>
+                    <li><p class="imgBox"><img src="images/img_4.jpg" alt=""></p></li>
+                    <li><p class="imgBox"><img src="images/img_5.jpg" alt=""></p></li>
+                </ul>
+                <div class="textBox en">
+                    <span class="title">Thailand</span>
+                    <div class="span text en2">Bangkok Royal Palace | SEA LIFE Ocean World Bangkok | Chao Phraya River | Chiang Mai Night Zoo | Chiang Mai | Phra That 
+                        Doi Suthep Temple | Phuket Simon Cabaret Show | Patong Beach | Phuket FantaSea | Tiffany Show | Sanctuary of Truth 
+                        Museum | Pattaya Floating Market | Ao Nang Beach | Railay Beach | Krabi Town | Samui Island | Chaweng Beach | Lamai
+                         Beach | Hua Hin Beach | Hua Hin Night Market | Banana Bar Water Jungle | Leung Khun Temple (White Temple) | Van Dam
+                         Museum Black House | Blue Temple (Wat Lung Suaten) | Phi Phi Islands | koh phi phi money | Maya Bay | Pai Love 
+                        Strawberry | Pai Historical Bridge | Pai Gorge</div>
+                </div>
+                <ul class="size">
+                    <li><p class="imgBox"><img src="images/img_6.jpg" alt=""></p></li>
+                    <li><p class="imgBox"><img src="images/img_7.jpg" alt=""></p></li>
+                    <li><p class="imgBox"><img src="images/img_6.jpg" alt=""></p></li>
+                </ul>
+                <div class="textBox size">
+                    <span class="title en">Let's go to  <b>Thailand</b></span>
+                </div>
+            </div>
+        </section>
+
+
+
+
+    </div>
+    <!-- gsap -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script>
+        (function(){
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.timeline({
+                scrollTrigger:{
+                    trigger:'.visual',
+                    start:'0% 0%',
+                    end:'100% 0%',
+                    scrub:1,
+                    pin:true, // 영역 고정
+                    // markers:true
+                }
+            })
+            .to('.visual h1',{'opacity':'1', duration:'10',ease:'none'},5) // 5초 있다가 진행
+            .to('.visual img',{'scale':'0.4','opacity':'0.3',  duration:'10',ease:'none'},5)
+
+            // imgBox //toArray를 이용해서 .imgBox를 배열로 만든다.
+            // gsap.utils.toArray('.imgBox').forEach(function(imgBox){
+            //     gsap.timeline({
+            //         scrollTrigger:{
+            //             trigger:imgBox,
+            //             start:'50% 100%',
+            //             toggleClass:{'targets':imgBox, className:'active'},
+            //             scrub:1,
+            //             markers:true
+            //         }
+            //     })
+            // });
+            const imgBox = document.querySelectorAll('.imgBox');
+            imgBox.forEach((box)=>{
+                gsap.timeline({
+                    scrollTrigger:{
+                        trigger:box,
+                        start:'50% 100%',
+                        toggleClass:{'targets':imgBox, className:'active'},
+                        scrub:1,
+                        // markers:true
+                    }
+                })
+            });
+
+            const textBox = document.querySelectorAll('.textBox');
+            textBox.forEach((box)=>{
+                gsap.timeline({
+                    scrollTrigger:{
+                        trigger:box,
+                        start:'50% 80%',
+                        end:'100% 0',
+                        toggleClass:{'targets':box, className:'active'},
+                        scrub:1,
+                        markers:true
+                    }
+                })
+            });
+
+        })();
+    </script>
+</body>
+</html>
