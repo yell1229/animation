@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body{width:100%;height:100vh;display:flex;align-items: center;justify-content: center;gap:40px;background:#333;color:#fff}
+        a{font-size:48px;}
+        [data-tha]{display:inline-block;position:relative;overflow:hidden;}
+        [data-tha-span-1],
+        [data-tha-span-2]{display:inline-block;color:#fff;}
+        [data-tha-span-2]{position:absolute;top:100%;left:0;}
+    </style>
+</head>
+<body>
+    <a href="" data-tha>About Us</a>
+    <a href="" data-tha>Products</a>
+    <a href="" data-tha>Email</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script>
+        const aList = document.querySelectorAll('[data-tha]');
+        aList.forEach((a)=>{
+            const html = a.innerHTML;
+            a.innerHTML = '';
+            const span1 = document.createElement('span');
+            const span2 = document.createElement('span');
+            span1.setAttribute('data-tha-span-1','');
+            span2.setAttribute('data-tha-span-2','');
+            span1.innerHTML = html;
+            span2.innerHTML = html;
+            a.append(span1);
+            a.append(span2);
+            
+            a.addEventListener('mouseenter',(e)=>{
+                const span1 = e.target.querySelector('[data-tha-span-1]');
+                const span2 = e.target.querySelector('[data-tha-span-2]');
+                gsap.to([span1,span2],{y:'-100%'})
+            });
+            a.addEventListener('mouseleave',(e)=>{
+                const span1 = e.target.querySelector('[data-tha-span-1]');
+                const span2 = e.target.querySelector('[data-tha-span-2]');
+                gsap.to([span1,span2],{y:'0'})
+            });
+        });
+    </script>
+</body>
+</html>

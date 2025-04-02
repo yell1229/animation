@@ -9,22 +9,50 @@
     <style>
         .wrap{position:relative;}
         .cont{height:100vh;border:4px dashed #322fd9}
-        .cont02{height:150vh;overflow-x:hidden;}
+        .con01{display:flex;align-items: center;justify-content: center;}
+        .con01 h1{}
+        .cont02{height:400vh;overflow-x:hidden;}
         .cont02 .popol_area{position:relative;display:flex;width:100vw;height:100vh;border:5px solid red;}
         .cont02 .popol_area .txt_area{display:flex;justify-content:center;align-items:center;width:65vw;border:5px solid rgb(0, 255, 47);flex-shrink:0;}
         .cont02 .popol_area .txt_area h2{font-size:70px;font-weight: bold;}
-        .cont02 .popol_area .img_area{width:100vw;border:5px solid rgb(255, 0, 225);flex-shrink:0;background:#ccc}
+        .cont02 .popol_area .img_area{display:flex;justify-content: space-around;flex-wrap: wrap; width:100vw;flex-shrink:0;background:#ccc;overflow: hidden;}
+        .cont02 .popol_area .img_area ul{display:flex;flex-direction: column; width:22%;flex-wrap: wrap;gap:3vh;}
+        .cont02 .popol_area .img_area ul:nth-child(odd){transform:translateY(-40vh)}
+        /* .cont02 .popol_area .img_area ul:nth-child(even){transform:translateY(-10vh)} */
+        .cont02 .popol_area .img_area ul li{width:100%;height:50vh;flex-shrink:0;background-color: #000;border-radius: 10px;}
     </style>
 </head>
 <body>
     <div class="wrap">
-        <div class="cont cont01">cont01</div>
+        <div class="cont cont01">
+        </div>
         <div class="cont cont02">
             <div class="popol_area">
                 <div class="txt_area"><h2>Lorem ipsum dolor sit.</h2></div>
                 <div class="img_area">
                     <ul>
-                        <li><img src="https://placehold.co/600x400"></li>
+                        <li>img</li>
+                        <li>img</li>
+                        <li>img</li>
+                        <li>img</li>
+                    </ul>
+                    <ul>
+                        <li>img</li>
+                        <li>img</li>
+                        <li>img</li>
+                        <li>img</li>
+                    </ul>
+                    <ul>
+                        <li>img</li>
+                        <li>img</li>
+                        <li>img</li>
+                        <li>img</li>
+                    </ul>
+                    <ul>
+                        <li>img</li>
+                        <li>img</li>
+                        <li>img</li>
+                        <li>img</li>
                     </ul>
                 </div>
             </div>
@@ -41,14 +69,23 @@
         gsap.timeline({
             scrollTrigger:{
                 trigger:'.cont02',
-                start:'0% 0%',
+                start:'0%  0%',
                 end:'100% 0%',
-                scrub:2,
+                scrub:true,
                 pin:true,
-                markers:true
+                markers:true,
+                onLeave: (self) => {
+                //self.scroll(self.start); // 스크롤을 시작 지점에서 멈추도록 설정
+                setTimeout(() => self.enable(), 2000); // 2초 후 다시 스크롤 가능
+            },
+               // pinSpacing:true // pin의 default 값
+               // invalidateOnRefresh:true // window resize
+               // stagger : 1 // 순차적으로 delay:1을 주고 실행한다. 
             }
         })
-        .to('.cont02 .popol_area',{'transform':'translateX(-65vw)','duration':'10','ease':'none'},2)
+        .to('.cont02 .popol_area',{'x':'-65vw','duration':'10','ease':'easeInOut'},0)
+        .to('.cont02 .img_area ul:nth-child(even)',{'y':'-15vh','duration':'10','ease':'none'},.1)
+        .to('.cont02 .img_area ul:nth-child(odd)',{'y':'15vh','duration':'10','ease':'none'},.1)
     </script>
 </body>
 </html>
