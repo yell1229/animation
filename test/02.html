@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style>
         .wrap{position:relative;}
-        header{position:fixed;display:flex;justify-content:space-between;align-items: center;top:0;left:0;width:100%;height:80px;color:#000;font-size:16px;}
-        header h1, 
+        header{position:fixed;top:-100%;left:0;display:flex;justify-content:space-between;align-items: center;width:100%;height:80px;color:#000;font-size:16px;padding:0 10%;transition:all 1s;}
+        header.active{top:0;}
+        header h1{font-size:30px;} 
         header ul{display:flex;justify-content:space-between;align-items: center;gap:10px;}
-        header ul li{color:inherit}
+        header ul li{color:inherit;font-weight: bold;}
+        header ul li{color:inherit;font-weight: bold;}
         .cont{height:100vh;border:4px dashed #322fd9}
-        /* .cont01{display:flex;align-items: center;justify-content: center;background-image:url(./images/01.jpg);background-repeat: no-repeat;background-size: cover;background-position: 50% 0;background-attachment: fixed;} */
+        .cont01{display:flex;justify-content: center;align-items: center;flex-direction: column;}
+        .cont01 .txt{    font-family: "canada-type-gibson", sans-serif;font-size:80px;color:#000}
+        .cont01 .v_area{position:absolute;bottom:-70%;left:0;width:100%;height:100vh;padding:0 10%;overflow:hidden;}
+        .cont01 .v_area .swiper{width:100%;height:100%;transition:all 2s;transform-origin: 50% 50%;background:#000}
+        .cont01 .v_area .swiper-slide{background-size: cover; background-position: center center; background-repeat: no-repeat; transition:all 2s;}
+
         .cont02{height:400vh;overflow-x:hidden;}
         .cont02 .popol_area{position:relative;display:flex;width:100vw;height:100vh;}
         .cont02 .popol_area .txt_area{display:flex;justify-content:center;align-items:center;width:65vw;flex-shrink:0;}
@@ -39,8 +47,21 @@
                 <li>ESG</li>
                 <li>CAREERS</li>
             </ul>
+            <div class="btn">menu</div>
         </header>
         <div class="cont cont01">
+            <div class="txt">Sustainable technologies</div>
+            <div class="txt">for our future generations</div>
+            <div class="v_area">
+                <div class="swiper bgSwiper">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide" style="background-image:url('./images/kv1.jpg');"></div>
+                      <div class="swiper-slide" style="background-image:url('./images/kv2.jpg');"></div>
+                      <div class="swiper-slide" style="background-image:url('./images/kv3.jpg');"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
         </div>
         <div class="cont cont02">
             <div class="popol_area">
@@ -81,9 +102,46 @@
     <!-- gsap -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const txt = new SplitType('.txt_motion');
         gsap.registerPlugin(ScrollTrigger);
+        const txt = new SplitType('.txt_motion');
+
+        window.addEventListener('load',() =>{
+            const header = document.querySelector('header');
+            header.classList.add('active');
+
+            const txtAni = gsap.timeline();
+
+            txtAni.from('.txt',{'opacity':'0',y:'100%',ease:'ease-in',duration:1, stagger:0.2},1)
+
+        });
+        var swiper = new Swiper(".bgSwiper", {
+        spaceBetween: 0,
+        effect: "fade",
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+        },
+        speed: 2000,
+        pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+        });
+        
+
+        gsap.timeline({
+            scrollTrigger:{
+                trigger:'.cont01',
+                start:'0% 0%',
+                end:'0% 0%',
+                pin:true,
+                scrub:true,
+                markers:true
+            }
+        })
 
         gsap.timeline({
             scrollTrigger:{
