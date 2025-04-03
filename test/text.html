@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+    body{height:200vh;}
+    .cont01{position:relative;height:100vh}
+    .txt{position:absolute;top:50%;left:50%;transform:translate(-50% ,-50%);font-size:80px;font-weight: bold;transition:all 0.5s;overflow:hidden;}
+    .char{transform:translateY(100%); font-size:80px;font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div class="cont01">
+        <div class="txt" id="txt">Lorem.Text</div>
+    </div>
+
+    <!-- gsap -->
+    <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script>
+        const textElement = document.querySelector('.txt');
+        const myText = new SplitType('#txt');
+        const chars = textElement.querySelectorAll('.char'); // 수정된 부분
+
+
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.timeline({
+            scrollTrigger:{
+                trigger:'.cont01',
+                start: '0% 0%',
+                end: '50% 0%',
+                scrub:true,
+                pin:true,
+                markers:true
+            }
+        })
+        .to('.char', { y: '0', duration: 5, ease: 'ease-in', stagger: 0.3 }, 0);
+    </script>
+</body>
+</html>

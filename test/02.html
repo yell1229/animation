@@ -8,14 +8,18 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style>
         .wrap{position:relative;}
+        header{position:fixed;display:flex;justify-content:space-between;align-items: center;top:0;left:0;width:100%;height:80px;color:#000;font-size:16px;}
+        header h1, 
+        header ul{display:flex;justify-content:space-between;align-items: center;gap:10px;}
+        header ul li{color:inherit}
         .cont{height:100vh;border:4px dashed #322fd9}
-        .con01{display:flex;align-items: center;justify-content: center;}
-        .con01 h1{}
+        /* .cont01{display:flex;align-items: center;justify-content: center;background-image:url(./images/01.jpg);background-repeat: no-repeat;background-size: cover;background-position: 50% 0;background-attachment: fixed;} */
         .cont02{height:400vh;overflow-x:hidden;}
-        .cont02 .popol_area{position:relative;display:flex;width:100vw;height:100vh;border:5px solid red;}
-        .cont02 .popol_area .txt_area{display:flex;justify-content:center;align-items:center;width:65vw;border:5px solid rgb(0, 255, 47);flex-shrink:0;}
-        .cont02 .popol_area .txt_area h2{font-size:70px;font-weight: bold;}
-        .cont02 .popol_area .img_area{display:flex;justify-content: space-around;flex-wrap: wrap; width:100vw;flex-shrink:0;background:#ccc;overflow: hidden;}
+        .cont02 .popol_area{position:relative;display:flex;width:100vw;height:100vh;}
+        .cont02 .popol_area .txt_area{display:flex;justify-content:center;align-items:center;width:65vw;flex-shrink:0;}
+        .cont02 .popol_area .txt_area .txt_motion{position:relative;overflow:hidden;}
+        .cont02 .popol_area .txt_area .txt_motion .char{transform:translateY(100%); font-size:70px;font-weight: bold;}
+        .cont02 .popol_area .img_area{display:flex;justify-content: space-around;flex-wrap: wrap; width:100vw;flex-shrink:0;overflow: hidden;}
         .cont02 .popol_area .img_area ul{display:flex;flex-direction: column; width:22%;flex-wrap: wrap;gap:3vh;}
         .cont02 .popol_area .img_area ul:nth-child(odd){transform:translateY(-40vh)}
         /* .cont02 .popol_area .img_area ul:nth-child(even){transform:translateY(-10vh)} */
@@ -24,11 +28,23 @@
 </head>
 <body>
     <div class="wrap">
+        <header>
+            <h1>Yellsdesign</h1>
+            <ul>
+                <li>WHO WE ARE</li>
+                <li>WHY WE EXIST </li>
+                <li>WHAT WE DO</li>
+                <li>IR</li>
+                <li>MEDIA</li>
+                <li>ESG</li>
+                <li>CAREERS</li>
+            </ul>
+        </header>
         <div class="cont cont01">
         </div>
         <div class="cont cont02">
             <div class="popol_area">
-                <div class="txt_area"><h2>Lorem ipsum dolor sit.</h2></div>
+                <div class="txt_area"><h2 class="txt_motion">Lorem ipsum dolor sit.</h2></div>
                 <div class="img_area">
                     <ul>
                         <li>img</li>
@@ -60,10 +76,13 @@
         <div class="cont cont03"></div>
         <div class="cont cont04"></div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4"></script>
     <!-- gsap -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
     <script>
+        const txt = new SplitType('.txt_motion');
         gsap.registerPlugin(ScrollTrigger);
 
         gsap.timeline({
@@ -83,9 +102,10 @@
                // stagger : 1 // 순차적으로 delay:1을 주고 실행한다. 
             }
         })
-        .to('.cont02 .popol_area',{'x':'-65vw','duration':'10','ease':'easeInOut'},0)
-        .to('.cont02 .img_area ul:nth-child(even)',{'y':'-15vh','duration':'10','ease':'none'},.1)
-        .to('.cont02 .img_area ul:nth-child(odd)',{'y':'15vh','duration':'10','ease':'none'},.1)
+        .to('.cont02 .popol_area',{'x':'-65vw','duration':'10','ease':'easeInOut'},4)
+        .to('.cont02 .img_area ul:nth-child(even)',{'y':'-15vh','duration':'10','ease':'none'},4)
+        .to('.cont02 .img_area ul:nth-child(odd)',{'y':'15vh','duration':'10','ease':'none'},4)
+        .to('.char',{y:'0', duration:0.3, ease:'ease-in',stagger: 0.2},0)
     </script>
 </body>
 </html>
