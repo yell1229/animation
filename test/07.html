@@ -11,7 +11,7 @@
         /* .cont{height:100vh;} */
         .cont01{background:#000;color:#fff;font-size:80px;text-align:center;line-height:100vh}
         .cont02{position:relative;width:100vw;height:100vh}
-        .cont02 .videoWrap video{position:absolute;top:0;left:0; width:100vw;height:100vh;object-fit: cover;}
+        .cont02 .videoWrap video{position:absolute;top:0;left:0; width:100vw;height:100vh;object-fit: cover;filter:brightness(50%)}
         .cont02 .title{position:absolute;top:50%;left:0;width:100%;transform: translateY(-50%);text-align:center;color:#fff}
         .cont02 .title h2, .cont02 .title h2 span{font-size:80px;color:inherit}
         .cont03{padding-bottom:1000px;}
@@ -20,7 +20,7 @@
         .cont03 .workList li{width:45%;margin-top:200px;}
         .cont03 .workList li:nth-child(2n){margin-top:0;}
         .cont03 .workList li img{width:100%;}
-        .cont04{position:relative;width:100vw;height:100vh;overflow:hidden; background-color: red;}
+        .cont04{position:relative;width:100vw;height:100vh;overflow:hidden;}
         .cont04 .textWrap{position:absolute;top:50%;left:50%; width:70vw;transform: translate(-50%, -50%);z-index:2;}
         .cont04 .imgSwiper{width:100%;transform:rotate(5deg) translate(150%, 400px) scale(1.1);opacity: 0;}
         .cont04.active .imgSwiper{transform:rotate(5deg) translate(0%, 400px) scale(1.1);opacity:1;transition: all 1.2s; transition-delay: 0.3s;}
@@ -84,71 +84,87 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.timeline({
-            scrollTrigger:{
-                trigger:'.cont02',
-                start:'0% 80%',
-                end:'100% 100%',
-                scrub:1,
-                // markers:true
-            }
-        })
-        .to('.cont01',{'backgroundColor':'#fff','color':'#000'})
-        .fromTo('.videoWrap video',{'clip-path':'inset(40% round 40%)'},{'clip-path':'inset(0% round 0%)', duration:'10', ease:'none'},0)
+        window.addEventListener('load',()=>{
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.timeline({
+                scrollTrigger:{
+                    trigger:'.cont02',
+                    start:'0% 80%',
+                    end:'100% 100%',
+                    scrub:1,
+                    // markers:true
+                }
+            })
+            .to('.cont01',{'backgroundColor':'#fff','color':'#000'})
+            .fromTo('.videoWrap video',{'clip-path':'inset(40% round 40%)'},{'clip-path':'inset(0% round 0%)', duration:'10', ease:'none'},0)
 
-        // text
-        gsap.timeline({
-            scrollTrigger:{
-                trigger:'.cont03',
-                start:'0% 100%',
-                end:'0% 20%',
-                scrub:1,
-                // markers:true
-            }
-        })
-        .fromTo('.cont03 .title .a',{x:'-100%'},{x:'0%',ease:'none',duration:5},0)
-        .fromTo('.cont03 .title .b',{x:'100%'},{x:'0%',ease:'none',duration:5},0)
+            // text
+            gsap.timeline({
+                scrollTrigger:{
+                    trigger:'.cont03',
+                    start:'0% 100%',
+                    end:'0% 20%',
+                    scrub:1,
+                    // markers:true
+                }
+            })
+            .fromTo('.cont03 .title .a',{x:'-100%'},{x:'0%',ease:'none',duration:5},0)
+            .fromTo('.cont03 .title .b',{x:'100%'},{x:'0%',ease:'none',duration:5},0)
 
-        // workList
-        gsap.timeline({
-            scrollTrigger:{
-                trigger:'.cont03 .workList',
-                start:'0% 100%',
-                end:'0% 100%',
-                scrub:1,
-                // markers:true
-            }
-        })
-        .to('#wrap',{'backgroundColor':'#000','color':'#fff'})
-        .to('.cont03 .title',{'position':'fixed','top':0,'left':0,'width':'100vw',ease:'none',duration:5},0)
-        .fromTo('.cont03 .workList',{margin:'0 auto'},{margin:'100vh auto 0',position:'relative',zIndex:'10', duration:1},0)
+            // workList
+            gsap.timeline({
+                scrollTrigger:{
+                    trigger:'.cont03 .workList',
+                    start:'0% 100%',
+                    end:'0% 100%',
+                    scrub:1,
+                    // markers:true
+                }
+            })
+            .to('#wrap',{'backgroundColor':'#000','color':'#fff'})
+            .to('.cont03 .title',{'position':'fixed','top':0,'left':0,'width':'100vw',ease:'none',duration:5},0)
+            .fromTo('.cont03 .workList',{margin:'0 auto'},{margin:'100vh auto 0',position:'relative',zIndex:'10', duration:1},0)
 
-        gsap.timeline({
-            scrollTrigger:{
-                trigger:'.cont03 .workList',
-                start:'100% 50%',
-                end:'100% 0%',
-                scrub:1,
-                markers:true
-            }
-        })
-        .to('.cont03 .title .a',{x:'-100%',ease:'none',duration:5},0)
-        .to('.cont03 .title .b',{x:'100%',ease:'none',duration:5},0)
+            gsap.timeline({
+                scrollTrigger:{
+                    trigger:'.cont03 .workList',
+                    start:'100% 50%',
+                    end:'100% 0%',
+                    scrub:1,
+                    markers:true
+                }
+            })
+            .to('.cont03 .title .a',{x:'-100%',ease:'none',duration:5},0)
+            .to('.cont03 .title .b',{x:'100%',ease:'none',duration:5},0)
 
-        // slide
-        var swiper = new Swiper(".imgSwiper", {
-            slidesPerView: "auto", 
-            spaceBetween: 0,
-            loop: true,
-            speed: 8000,
-            autoplay: {
-                delay: 1, 
-                disableOnInteraction: false,
-            },
-            allowTouchMove: false, 
-            loopAdditionalSlides: 10,
-                });
+            // slide
+            const swiperWrapper = document.querySelector('.imgSwiper .swiper-wrapper');
+            const slides = document.querySelectorAll('.swiper-slide');
+            const totalSlide = slides.length;
+            if(totalSlide < 12){
+                const clones  = 12 - totalSlide;
+                for(let i=0; i <clones; i++){
+                    const clone = slides[i % totalSlide].cloneNode(true);
+                    swiperWrapper.appendChild(clone);
+                    console.log(i % totalSlide);
+                    
+                }
+            }
+
+            var swiper = new Swiper(".imgSwiper", {
+                slidesPerView: "auto", 
+                spaceBetween: 0,
+                loop: true,
+                speed: 8000,
+                autoplay: {
+                    delay: 1, 
+                    disableOnInteraction: false,
+                },
+                allowTouchMove: false, 
+                loopAdditionalSlides: 5,
+                    });
+        }); // load event
+        
     </script>
 </body>
 </html>
