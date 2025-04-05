@@ -1,6 +1,7 @@
 window.addEventListener('load',()=>{
 
     gsap.registerPlugin(ScrollTrigger);
+    const txt = new SplitType('.txt_motion');
 
     gsap.timeline({
         scrollTrigger:{
@@ -8,10 +9,10 @@ window.addEventListener('load',()=>{
             start:'0% 80%',
             end:'100% 100%',
             scrub:1,
-            // markers:true
+            markers:true
         }
     })
-    // .to('.cont01',{'backgroundColor':'#fff','color':'#000'})
+    // .to('header',{'color':'#fff'})
     .fromTo('.videoWrap video',{'clip-path':'inset(40% round 40%)'},{'clip-path':'inset(0% round 0%)', duration:'10', ease:'none'},0)
 
     // text
@@ -53,7 +54,11 @@ window.addEventListener('load',()=>{
     .to('.cont03 .title .a',{x:'-100%',ease:'none',duration:5},0)
     .to('.cont03 .title .b',{x:'100%',ease:'none',duration:5},0)
 
+
+    // cont04 
     // slide
+    let swiper1 = null;
+    let swiper2 = null;
     const swiperWrapper = document.querySelector('.imgSwiper .swiper-wrapper');
     const swiperWrapper2 = document.querySelector('.imgSwiper2 .swiper-wrapper');
     const slides = document.querySelectorAll('.imgSwiper .swiper-slide');
@@ -62,12 +67,13 @@ window.addEventListener('load',()=>{
         const clones  = 12 - totalSlide;
         for(let i=0; i <clones; i++){
             const clone = slides[i % totalSlide].cloneNode(true);
+            const clone2 = clone.cloneNode(true);
             swiperWrapper.appendChild(clone);                   
-            swiperWrapper2.appendChild(clone);                   
+            swiperWrapper2.appendChild(clone2);                   
         }
     }
 
-    var swiper = new Swiper(".imgSwiper", {
+    swiper1 = new Swiper(".imgSwiper", {
         slidesPerView: "auto", 
         spaceBetween: 0,
         loop: true,
@@ -78,8 +84,10 @@ window.addEventListener('load',()=>{
         },
         allowTouchMove: false, 
         loopAdditionalSlides: 5,
-            });
-    var swiper = new Swiper(".imgSwiper2", {
+    });
+    swiper1.autoplay.stop();
+
+    swiper2 = new Swiper(".imgSwiper2", {
         slidesPerView: "auto", 
         spaceBetween: 0,
         loop: true,
@@ -90,5 +98,49 @@ window.addEventListener('load',()=>{
         },
         allowTouchMove: false, 
         loopAdditionalSlides: 5,
-            });
+    });
+    swiper2.autoplay.stop();
+
+
+    gsap.timeline({
+        scrollTrigger:{
+            trigger:'.cont04',
+            start:'0% 100%',
+            // end:'100% 100%',
+            scrub:1,
+            toggleClass:{'targets':'.cont04', className:'active'},
+            // markers:true,
+            onEnter: () => {
+                swiper1.autoplay.start();
+                swiper2.autoplay.start();
+            },
+            onLeaveBack: () => {
+                swiper1.autoplay.stop();
+                swiper2.autoplay.stop();
+            }
+        }
+    })
+
+    // 05
+    gsap.timeline({
+        scrollTrigger:{
+            trigger:'.cont05',
+            start: 'top+=80 100px',
+            end:'100% 0%',
+            scrub:true,
+            pin:true,
+            // markers:true,
+            // onLeave: (self) => {
+            // //self.scroll(self.start); // 스크롤을 시작 지점에서 멈추도록 설정
+            // setTimeout(() => self.enable(), 2000); // 2초 후 다시 스크롤 가능
+            // }
+        }
+    })
+    .to('.cont05 .popol_area',{'x':'-65vw','duration':'10','ease':'easeInOut'},4)
+    .to('.cont05 .img_area ul:nth-child(even)',{'y':'-15vh','duration':'10','ease':'none'},4)
+    .to('.cont05 .img_area ul:nth-child(odd)',{'y':'15vh','duration':'10','ease':'none'},4)
+    .to('.cont05 .char',{y:'0', duration:0.3, ease:'ease-in',stagger: 0.2},0)
+
+    
+
 }); // load event
