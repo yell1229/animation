@@ -126,9 +126,10 @@ window.addEventListener('load',()=>{
         scrollTrigger:{
             trigger:'.cont05',
             start: 'top+=80 100px',
-            end:'100% 0%',
+            end:'+=2000',
             scrub:true,
             pin:true,
+            anticipatePin:1 // pin을 부드럽게
             // markers:true,
             // onLeave: (self) => {
             // //self.scroll(self.start); // 스크롤을 시작 지점에서 멈추도록 설정
@@ -141,6 +142,25 @@ window.addEventListener('load',()=>{
     .to('.cont05 .img_area ul:nth-child(odd)',{'y':'15vh','duration':'10','ease':'none'},4)
     .to('.cont05 .char',{y:'0', duration:0.3, ease:'ease-in',stagger: 0.2},0)
 
+    // 06
+    gsap.timeline({
+        scrollTrigger:{
+            trigger:'.cont06',
+            start:'0% 0%',
+            end:'+=6000',
+            pin:true,
+            anticipatePin:1,
+            scrub:true,
+            markers:true
+        }
+    })
+    .from('.cont06 .t1',{y:'150',autoAlpha:0, duration:1}, '+=1')
+    .from('.cont06 .t2',{y:'150',autoAlpha:0, duration:1}, '+=1')
+    .from('.cont06 .t3',{y:'150',autoAlpha:0, duration:1}, '+=1')
+    .from('.cont06 .t4',{y:'150',autoAlpha:0, duration:1}, '+=1')
+    .from('.cont06 .t5',{y:'150',autoAlpha:0, duration:1}, '+=1')
+    .from('.cont06 .t6',{y:'150',autoAlpha:0, duration:1}, '+=1')
+    .from('.cont06 .t7',{y:'150',autoAlpha:0, duration:1}, '+=1')
     
 
 }); // load event
