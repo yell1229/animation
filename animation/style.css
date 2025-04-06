@@ -63,15 +63,25 @@ header .btn span:nth-child(2){top: 50%;transform: translateY(6px);}
 header .btn:hover span:nth-child(1){transform:rotate(45deg);}
 header .btn:hover span:nth-child(2){transform:rotate(-45deg);}
 .cont01{height:100vh;color:#000;font-size:80px;text-align:center;}
-.cont01 .txt{position:absolute;top:50%;width:100%;transform:translateY(-50%)}
-.cont01 .txt p{opacity: 0;transform:translateY(100%);animation: textAni .5s ease-in 1 both;animation-delay: 1.5s;}
-.cont01 .txt p:nth-child(2){animation-delay: 1.8s;}
+.cont01 .txt_area{position:relative;display:flex;align-items: center; width:100%;height:100vh;}
+.cont01 .txt_area .txt{width:100%;}
+.cont01 .txt_area .txt p{opacity: 0;transform:translateY(100%);animation: textAni .5s ease-in 1 both;animation-delay: 1.5s;}
+.cont01 .txt_area .txt p:nth-child(2){animation-delay: 1.8s;}
 @keyframes textAni {
     0%{opacity: 0;transform:translateY(100%)}
     100%{opacity: 1;transform:translateY(0%)}
 }
+.cont01 .overlay{position:absolute;top:0;left:0;width:100%;height:100vh;background:#000;color:#fff;clip-path: circle(0px at 50% 50%);}
+.cont01 .overlay.active{animation: circle 1.8s ease-in-out 1;animation-delay: 1s;}
+.cont01 .overlay2{position:absolute;top:0;left:0;width:100%;height:100vh;background:#fff;color:#000;clip-path: circle(0px at 50% 50%);}
+.cont01 .overlay2.active{animation: circle 1.8s ease-in-out 1;animation-delay: 1.5s;}
+@keyframes circle {
+    0%{clip-path: circle(0px at 50% 50%);}
+    50%{clip-path: circle(2000px at 50% 50%);}
+    100%{clip-path: circle(0px at 50% 50%);}
+}
 .cont02{position:relative;width:100vw;height:100vh}
-.cont02 .videoWrap video{position:absolute;top:0;left:0; width:100vw;height:100vh;object-fit: cover;filter:brightness(50%)}
+.cont02 .videoWrap video{position:absolute;top:0;left:0; width:100vw;height:100vh;object-fit: cover;filter:grayscale(100%)}
 .cont02 .title{position:absolute;top:50%;left:0;width:100%;transform: translateY(-50%);text-align:center;color:#fff}
 .cont02 .title h2, .cont02 .title h2 span{font-size:80px;color:inherit}
 .cont03{padding-bottom:1000px;}

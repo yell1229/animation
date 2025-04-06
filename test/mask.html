@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .cont01{height:100vh;color:#000;font-size:80px;text-align:center;}
+        .cont01 .txt_area{display:flex;align-items: center; width:100%;height:100vh;}
+        .cont01 .txt_area .txt{width:100%;}
+        .cont01 .txt_area .txt p{opacity: 0;transform:translateY(100%);animation: textAni .5s ease-in 1 both;animation-delay: 1.5s;}
+        .cont01 .txt_area .txt p:nth-child(2){animation-delay: 1.8s;}
+        @keyframes textAni {
+            0%{opacity: 0;transform:translateY(100%)}
+            100%{opacity: 1;transform:translateY(0%)}
+        }
+        .cont01 .overlay{position:absolute;top:0;left:0;width:100%;height:100vh;background:#000;color:#fff;clip-path: circle(0px at 50% 50%);transition: clip-path 2s;}
+        .cont01 .overlay.active{clip-path: circle(2000px at 50% 50%);}
+    </style>
+</head>
+<body>
+    <div class="cont cont01">
+        <div class="txt_area">
+            <div class="txt">
+                <p>Lorem ipsum dolor </p>
+                <p>for our sit amet consectetur.</p>
+            </div>
+        </div>
+        <div class="txt_area overlay">
+            <div class="txt">
+                <p>Lorem ipsum dolor </p>
+                <p>for our sit amet consectetur.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script>
+        setTimeout(()=>{
+            const circle = document.querySelector('.overlay');
+            circle.classList.add('active');
+        },3000);
+    </script>
+</body>
+</html>

@@ -2,6 +2,13 @@ window.addEventListener('load',()=>{
 
     gsap.registerPlugin(ScrollTrigger);
     const txt = new SplitType('.txt_motion');
+    // circle
+    setTimeout(()=>{
+        const circle = document.querySelector('.overlay');
+        const circle2 = document.querySelector('.overlay2');
+        circle.classList.add('active');
+        circle2.classList.add('active');
+    },3000);
 
     gsap.timeline({
         scrollTrigger:{
@@ -9,11 +16,23 @@ window.addEventListener('load',()=>{
             start:'0% 80%',
             end:'100% 100%',
             scrub:1,
-            markers:true
+            // markers:true
         }
     })
     // .to('header',{'color':'#fff'})
     .fromTo('.videoWrap video',{'clip-path':'inset(40% round 40%)'},{'clip-path':'inset(0% round 0%)', duration:'10', ease:'none'},0)
+
+    gsap.timeline({
+        scrollTrigger:{
+            trigger:'.cont02',
+            // start:'100% 0%',
+            end:'0% 0%',
+            scrub:1,
+            markers:true
+        }
+    })
+    .to('header',{'color':'#fff'})
+    .to('header .btn span',{'background-color':'#fff'})
 
     // text
     gsap.timeline({
@@ -39,6 +58,7 @@ window.addEventListener('load',()=>{
         }
     })
     .to('#wrap',{'backgroundColor':'#000','color':'#fff'})
+    .to('header .btn span',{'background-color':'#fff'})
     .to('.cont03 .title',{'position':'fixed','top':0,'left':0,'width':'100vw',ease:'none',duration:5},0)
     .fromTo('.cont03 .workList',{margin:'0 auto'},{margin:'100vh auto 0',position:'relative',zIndex:'10', duration:1},0)
 
@@ -151,7 +171,7 @@ window.addEventListener('load',()=>{
             pin:true,
             anticipatePin:1,
             scrub:true,
-            markers:true
+            // markers:true
         }
     })
     .from('.cont06 .t1',{y:'150',autoAlpha:0, duration:1}, '+=1')
