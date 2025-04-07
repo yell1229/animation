@@ -1,4 +1,20 @@
 window.addEventListener('load',()=>{
+    // btn click
+
+    const body = document.querySelector('body');
+    const btn = document.querySelector('header .btn');
+    const btnClose = document.querySelector('.sitemap .btn_close');
+    const sitemap = document.querySelector('.sitemap');
+    btn.addEventListener('click',()=>{
+        sitemap.classList.add('active');
+        body.classList.add('hidden');
+    });
+    btnClose.addEventListener('click',()=>{
+        sitemap.classList.remove('active');
+        body.classList.remove('hidden');
+    });
+
+
 
     gsap.registerPlugin(ScrollTrigger);
     const txt = new SplitType('.txt_motion');
