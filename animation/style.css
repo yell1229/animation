@@ -92,6 +92,9 @@ header .btn:hover span:nth-child(2){transform:rotate(-45deg);}
 .cont03 .workList li img{width:100%;}
 .cont04{position:relative;width:100vw;height:100vh;overflow:hidden;}
 .cont04 .textWrap{position:absolute;top:50%;left:50%; width:70vw;transform: translate(-50%, -50%);z-index:10;}
+.cont04 .textWrap li{font-size:60px;}
+.cont04 .textWrap li:nth-child(odd){text-transform:uppercase;}
+.cont04 .textWrap li:nth-child(even){font-style:italic;}
 .cont04 .imgSwiper{width:100%;transform:rotate(5deg) translate(150%, 400px) scale(1.1);opacity: 0;z-index:5;}
 .cont04 .imgSwiper2{width:120%;transform:rotate(50deg) translate(0%, 400px) scale(1.1);opacity: 0;z-index:1;}
 .cont04.active .imgSwiper{transform:rotate(5deg) translate(0%, 400px) scale(1.1);opacity:1;transition: all 1.2s; transition-delay: 0.3s;}
@@ -114,4 +117,4 @@ header .btn:hover span:nth-child(2){transform:rotate(-45deg);}
 .cont05 .popol_area .img_area ul li img{width:100%;height:100%;}
 
 .cont06{position:relative;height:100vh;}
-.cont06 .txt{position:absolute;top:50%;left:0;width:100%;text-align:center;font-size:80px;transform: translateY(-50%);background-color:#000}
+.cont06 .txt{position:absolute;top:50%;left:0;width:100%;padding:5px 0;text-align:center;font-size:80px;transform: translateY(-50%);background-color:#000}

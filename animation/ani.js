@@ -28,7 +28,7 @@ window.addEventListener('load',()=>{
             // start:'100% 0%',
             end:'0% 0%',
             scrub:1,
-            markers:true
+            // markers:true
         }
     })
     .to('header',{'color':'#fff'})
@@ -167,7 +167,7 @@ window.addEventListener('load',()=>{
         scrollTrigger:{
             trigger:'.cont06',
             start:'0% 0%',
-            end:'+=6000',
+            end:'+=5000',
             pin:true,
             anticipatePin:1,
             scrub:true,
