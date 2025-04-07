@@ -5,13 +5,17 @@ window.addEventListener('load',()=>{
     const btn = document.querySelector('header .btn');
     const btnClose = document.querySelector('.sitemap .btn_close');
     const sitemap = document.querySelector('.sitemap');
-    btn.addEventListener('click',()=>{
-        sitemap.classList.add('active');
-        body.classList.add('hidden');
+    btn.addEventListener('click',(event)=>{
+        if (!event.target.closest('span')) {
+            sitemap.classList.add('active');
+            body.classList.add('hidden');
+        }
     });
-    btnClose.addEventListener('click',()=>{
-        sitemap.classList.remove('active');
-        body.classList.remove('hidden');
+    btnClose.addEventListener('click',(event)=>{
+        if (!event.target.closest('span')) {
+            sitemap.classList.remove('active');
+            body.classList.remove('hidden');
+        }
     });
 
 

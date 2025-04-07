@@ -59,7 +59,7 @@ header ul{display:flex;justify-content: space-between;gap:10px;}
     100%{top:0%}
 }
 header .btn{position:relative;width:30px;height:30px;cursor: pointer;}
-header .btn span{position:absolute;display:block;width:30px;height:1px;background-color: #000;transform-origin:50% 50%;transition:all 0.5s ease;}
+header .btn span{position:absolute;display:block;width:30px;height:1px;background-color: #000;transform-origin:50% 50%;transition:all 0.5s ease;pointer-events: none;}
 header .btn span:nth-child(1){top: 50%;transform: translateY(-6px);}
 header .btn span:nth-child(2){top: 50%;transform: translateY(6px);}
 header .btn:hover span:nth-child(1){transform:rotate(45deg);}
@@ -70,7 +70,7 @@ header .btn:hover span:nth-child(2){transform:rotate(-45deg);}
 .sitemap .top{position:relative;width:100%;height:80px;padding:0 80px;display:flex;justify-content: space-between;align-items:center;z-index:30;}
 .sitemap .top h1{color:#fff}
 .sitemap .top .btn_close{position:relative;width:30px;height:30px;cursor: pointer;}
-.sitemap .top .btn_close span{position:absolute;display:block;width:30px;height:1px;background-color: #fff;transform-origin:50% 50%;transition:all 0.5s ease;}
+.sitemap .top .btn_close span{position:absolute;display:block;width:30px;height:1px;background-color: #fff;transform-origin:50% 50%;transition:all 0.5s ease;pointer-events: none;}
 .sitemap .top .btn_close span:nth-child(1){top: 50%;transform: rotate(45deg);}
 .sitemap .top .btn_close span:nth-child(2){top: 50%;transform: rotate(-45deg);}
 .sitemap .nav_box{position:absolute;top:50%;width:100%;padding:0 10vw;transform:translateY(-50%);color:#fff;}
