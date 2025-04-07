@@ -65,7 +65,7 @@ header .btn span:nth-child(2){top: 50%;transform: translateY(6px);}
 header .btn:hover span:nth-child(1){transform:rotate(45deg);}
 header .btn:hover span:nth-child(2){transform:rotate(-45deg);}
 
-.sitemap{position:absolute;top:0;left:0;width:100%;height:100vh;transform:translateX(100%); transition:all 1s;background-color: rgba(0,0,0,.7);backdrop-filter: blur(30px);z-index:200;}
+.sitemap{position:fixed;top:0;left:0;width:100%;height:100vh;transform:translateX(100%); transition:all 1s;background-color: rgba(0,0,0,.7);backdrop-filter: blur(30px);z-index:200;}
 .sitemap.active{transform:translateX(0%);}
 .sitemap .top{position:relative;width:100%;height:80px;padding:0 80px;display:flex;justify-content: space-between;align-items:center;z-index:30;}
 .sitemap .top h1{color:#fff}
