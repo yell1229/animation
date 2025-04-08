@@ -116,5 +116,5 @@ header .btn:hover span:nth-child(2){transform:rotate(-45deg);}
 .cont05 .popol_area .img_area ul li{width:100%;height:50vh;flex-shrink:0;background-color: #000;border-radius: 10px;overflow:hidden;}
 .cont05 .popol_area .img_area ul li img{width:100%;height:100%;}
 
-.cont06{position:relative;height:100vh;}
+.cont06{position:relative;}
 .cont06 .txt{position:absolute;top:50%;left:0;width:100%;padding:5px 0;text-align:center;font-size:80px;transform: translateY(-50%);background-color:#000}
