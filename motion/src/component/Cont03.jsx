@@ -28,6 +28,7 @@ export default function Con03() {
                 start:'0% 100%',
                 end:'0% 20%',
                 scrub:1,
+                snap: 1,
                 // markers:true
             }
         })

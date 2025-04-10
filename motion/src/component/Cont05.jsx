@@ -21,7 +21,7 @@ export default function Cont05() {
                 scrub:true,
                 pin:true,
                 anticipatePin:1, // pin을 부드럽게
-                markers:true,
+                // markers:true,
                 // onLeave: (self) => {
                 // //self.scroll(self.start); // 스크롤을 시작 지점에서 멈추도록 설정
                 // setTimeout(() => self.enable(), 2000); // 2초 후 다시 스크롤 가능

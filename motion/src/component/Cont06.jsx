@@ -28,17 +28,18 @@ export default function Cont06() {
                 markers:true
             }
         })
-        .from(txt.txt01Ref.current,{y:'150',autoAlpha:1, duration:1}, 1)
-        .from(txt.txt02Ref.current,{y:'150',autoAlpha:1, duration:1}, 1)
-        .from(txt.txt03Ref.current,{y:'150',autoAlpha:1, duration:1}, 1)
-        .from(txt.txt04Ref.current,{y:'150',autoAlpha:1, duration:1}, 1)
-        .from(txt.txt05Ref.current,{y:'150',autoAlpha:1, duration:1}, 1)
-        .from(txt.txt06Ref.current,{y:'150',autoAlpha:1, duration:1}, 1)
-        .from(txt.txt07Ref.current,{y:'150',autoAlpha:1, duration:1}, 1)
+        .from(txt.txt01Ref.current,{y:'150',autoAlpha:1, duration:1}, '+=1')
+        .from(txt.txt02Ref.current,{y:'150',autoAlpha:1, duration:1}, '+=1')
+        .from(txt.txt03Ref.current,{y:'150',autoAlpha:1, duration:1}, '+=1')
+        .from(txt.txt04Ref.current,{y:'150',autoAlpha:1, duration:1}, '+=1')
+        .from(txt.txt05Ref.current,{y:'150',autoAlpha:1, duration:1}, '+=1')
+        .from(txt.txt06Ref.current,{y:'150',autoAlpha:1, duration:1}, '+=1')
+        .from(txt.txt07Ref.current,{y:'150',autoAlpha:1, duration:1}, '+=1')
 
+        console.log('test',txt.txt01Ref.current);
     },[]);
     // console.log(cont06Ref.current);
-    // console.log(txt.txt01Ref.current);
+    console.log(txt.txt01Ref.current); // null
     
     return (
         <div className="cont cont06" ref={cont06Ref} style={{border:'5px solid red'}}>

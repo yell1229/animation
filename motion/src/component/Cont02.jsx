@@ -16,6 +16,7 @@ export default function Cont02() {
                 start:'0% 80%',
                 end:'100% 100%',
                 scrub:1,
+                snap: 1,
                 // markers:true
             }
         })

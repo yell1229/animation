@@ -48,7 +48,7 @@ button{
 }
 
 /* animation */
-#wrap{width:100%;overflow-x:hidden}
+#wrap{width:100%;}
 header{position:fixed;top:-100%;left:0;width:100%;height:80px;padding:0 80px;display:flex;justify-content: space-between;align-items: center;box-shadow: -1px 5px 13px 1px rgba(0,0,0,0.1);transition:all 1s;animation:nav 2s linear 1 both;z-index:100;background: transparent;
     backdrop-filter: blur(10px);}
 header ul{display:flex;justify-content: space-between;gap:10px;}
