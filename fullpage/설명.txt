@@ -1,0 +1,5 @@
+fullpage.js [https://www.phomein.com/brand/main/main.do]
+무료버전 사용: version 2.x.x
+참고: https://blog.naver.com/nahyun_www/223464049482
+
+2.x.x 버전은 가이드에 나온 방식으로 사용 불가능. 

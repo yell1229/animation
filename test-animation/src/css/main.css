@@ -1,0 +1,9 @@
+.link_list {
+  width: 800px;
+  margin: 0 auto;
+}
+.link_list ul li {
+  padding: 20px;
+  font-size: 24px;
+  border-bottom: 2px solid #ccc;
+}

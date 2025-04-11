@@ -5,8 +5,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    https://www.phomein.com/brand/main/main.do
+    <header>
+        <div class="inner">
+            <h1><img src="./images/logo.png" alt=""></h1>
+            <nav>
+                <ul>
+                    <li><a href="">COMPANY</a></li>
+                    <li><a href="">BRAND</a></li>
+                    <li><a href="">MENU</a></li>
+                    <li><a href="">STIRE</a></li>
+                    <li><a href="">FRANCHISE</a></li>
+                    <li><a href="">COMMUNITY</a></li>
+                    <li><a href="">RECRUIT</a></li>
+                </ul>
+            </nav>
+            <div class="btns">
+                <a href="">가맹문의</a>
+                <form action="">
+                    <input type="search" placeholder="SEARCH">
+                    <button type="submit">search</button>
+                </form>
+            </div>
+            <ul class="lang">
+                <li>KOREAN</li>
+                <li>ENGLISH</li>
+            </ul>
+        </div>
+    </header>
+    <ul id="menu">
+        <li data-menuanchor="cont01"><a href="#cont01"><span>홈</span></a></li>
+        <li data-menuanchor="cont02"><a href="#cont02"><span>브랜드</span></a></li>
+        <li data-menuanchor="cont03"><a href="#cont03"><span>메뉴</span></a></li>
+        <li data-menuanchor="cont04"><a href="#cont04"><span>서비스</span></a></li>
+    </ul>
+    <div id="fullpage">
+        <div class="section cont01" id="cont01">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div><span>포메인,</span>햅쌀로 자가제면 自家製麵</div>
+                        <div>
+                            <ul>
+                                <li>갓 지은 햅쌀밥의 향</li>
+                                <li>맑고 투명한 빛깔</li>
+                                <li>부드럽고 쫀득한 식감</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div>"쌀국수는 쌀국수답게"</div>
+                        <div>포메인이 가장 포메인다울 수 있도록</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div><span>매일매일 까다로운</span>포메인다움</div>
+                        <div>엄선한 9가지 상급 천연 향신료로 매일 매장에서 직접 끓여낸 명품 육수를 사용합니다.</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div><span>재료부터 건강한</span>포메인다움</div>
+                        <div>위해 상품차단 시스템으로 안전하고 우수한 품질의 식자재를 공급 받습니다.</div>
+                    </div>
+                </div>
+                <div class="swiper-pagination">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="section cont02" id="cont02">
+            <div class="cont">
+                <div class="box">
+                    <strong>SINCE 2006</strong>
+                    대한민국 쌀국수의 역사,<br>포메인으로부터.
+                </div>
+                <div class="count_area">
+                    <div class="count">112,000,000</div>
+                    <div>누적 고객 수 1억명 돌파</div>
+                    <div><img src="./images/ico_customers_number.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+        <div class="section cont03" id="cont03">Some section 3</div>
+        <div class="section cont04" id="cont04">Some section 4</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/vendors/scrollHorizontally.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const navTxtArr = [
+                '쌀국수는<br>쌀국수답게',
+                '쌀국수는<br>포메인',
+                '매일매일 까다로운<br>포메인다움',
+                '재료부터 건강한<br>포메인다움',
+            ];
+            
+            $('#fullpage').fullpage({
+                autoScrolling: true,
+                scrollHorizontally: true,
+                slidesNavigation: true,
+                controlArrows: true,
+
+                menu: '#menu',
+                anchors: ['cont01', 'cont02', 'cont03','cont04']
+            });
+
+            const swiper = new Swiper('.swiper', {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        console.log(index, className); //0,1,2,3
+                        
+                        return `<div class="${className}">
+                                <div class="bar"></div>
+                                <p>${navTxtArr[index]}</p>
+                            </div>`;
+                    }
+                },
+                autoplay: {
+                    delay: 10000,
+                    disableOnInteraction: false
+                },
+            });
+        });
+    </script>
 </body>
 </html>
