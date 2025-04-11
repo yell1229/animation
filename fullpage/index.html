@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <header>
@@ -43,7 +43,7 @@
         <li data-menuanchor="cont04"><a href="#cont04"><span>서비스</span></a></li>
     </ul>
     <div id="fullpage">
-        <div class="section cont01" id="cont01">
+        <div class="section cont01" data-anchor="cont01">
             <div class="swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -73,27 +73,52 @@
                     
                 </div>
             </div>
+            
         </div>
-        <div class="section cont02" id="cont02">
+        <div class="section cont02" data-anchor="cont02">
             <div class="cont">
                 <div class="box">
                     <strong>SINCE 2006</strong>
                     대한민국 쌀국수의 역사,<br>포메인으로부터.
                 </div>
                 <div class="count_area">
-                    <div class="count">112,000,000</div>
+                    <div class="count" id="count"></div>
                     <div>누적 고객 수 1억명 돌파</div>
                     <div><img src="./images/ico_customers_number.png" alt=""></div>
                 </div>
             </div>
         </div>
-        <div class="section cont03" id="cont03">Some section 3</div>
-        <div class="section cont04" id="cont04">Some section 4</div>
+        <div class="section cont03" data-anchor="cont03">
+            <div class="top_cont">
+                베트남 요리,<span>32가지 감동을 담다.</span>
+                <div><a href="">포메인 전체메뉴 보기</a></div>
+                <p>* 매장별로 판매 메뉴는 상이 할 수 있습니다.</p>
+            </div>
+            <div class="btm_cont">
+                <div>
+                    <div class="img"><img src="./images/ico_menu_info_01.png" alt=""></div>
+                    <div class="year"><strong id="yearCount">0</strong><span>th</span></div>
+                    <div class="since">SINCE 2006</div>
+                </div>
+            </div>
+        </div>
+        <div class="section cont04" data-anchor="cont04">
+            <div class="txt_area">
+                <span>ENJOY SERVICE</span>
+                <div>당신의 모든 순간</div>
+                <strong>포메인</strong>
+            </div>
+            <div class="img"><img src="./images/ico_moto_01.png" alt=""></div>
+            <div class="txt">포메인<strong>딜리버리 매장</strong></div>
+        </div>
     </div>
+    <a class="btn_down"><img src="./images/down_ic.png" alt=""></a>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/vendors/scrollHorizontally.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.14/jquery.animateNumber.min.js"></script>
+
+
     <script>
         $(document).ready(function() {
             const navTxtArr = [
@@ -102,25 +127,59 @@
                 '매일매일 까다로운<br>포메인다움',
                 '재료부터 건강한<br>포메인다움',
             ];
+            const btn = document.querySelector('.btn_down');
             
             $('#fullpage').fullpage({
                 autoScrolling: true,
-                scrollHorizontally: true,
                 slidesNavigation: true,
                 controlArrows: true,
 
                 menu: '#menu',
-                anchors: ['cont01', 'cont02', 'cont03','cont04']
+                anchors: ['cont01', 'cont02', 'cont03','cont04'],
+                afterRender: function() {
+                    document.querySelector('.btn_down').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    $.fn.fullpage.moveSectionDown(); // 이렇게 직접 호출해야 함
+                });
+                },
+                afterLoad: function(origin, destination, direction, trigger){    
+                    if(origin === 'cont02'){
+                        $('#count').animateNumber({
+                            number: 112000000,
+                            numberStep: $.animateNumber.numberStepFactories.separator(',')
+                        },
+                        2000
+                        );
+                    }
+                    if(origin === 'cont03'){
+                        $('#yearCount').animateNumber({
+                            number: 18
+                        }, 500);
+                    }
+                },
+                onLeave:function(origin, destination){
+                    console.log(origin, destination);
+                    
+                    if(destination === 2){
+                        $('#count').animateNumber({
+                            number: 0
+                        },10);
+                    }
+                    if(destination === 3){
+                        $('#yearCount').animateNumber({
+                            number: 0
+                        },10);
+                    }
+                }
             });
 
+            // slider
             const swiper = new Swiper('.swiper', {
                 loop: true,
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
-                    renderBullet: function (index, className) {
-                        console.log(index, className); //0,1,2,3
-                        
+                    renderBullet: function (index, className) {        
                         return `<div class="${className}">
                                 <div class="bar"></div>
                                 <p>${navTxtArr[index]}</p>
@@ -132,6 +191,8 @@
                     disableOnInteraction: false
                 },
             });
+
+            
         });
     </script>
 </body>
