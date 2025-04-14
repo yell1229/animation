@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        section {
+            width: 100%;
+            height: 100vh;
+            min-height: 500px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+        section video{
+            width:100%;height:100%;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <section class="header">
+        <h1>Header</h1>
+      </section>
+      
+      <section class="video-container">
+        <video src="./images/main2.mp4" muted class="video-scroll"></video>
+      </section>
+      
+      <section class="footer">
+        <h1>Footer</h1>
+      </section>
+
+    <!-- gsap -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger)
+
+        let videoScroll = document.querySelector(".video-scroll"),
+            frameNumber = 0,
+            src = videoScroll.currentSrc || videoScroll.src
+
+
+        videoScrollTL = gsap.timeline({
+        defaults: { duration: 1 },
+        scrollTrigger: {
+            trigger: ".video-container",
+            pin: true,
+            start: "top top",
+            end: "+=400%",
+            scrub: true,
+            markers: true,
+            onUpdate: self => {
+            frameNumber = self.progress / 14 * 100 - 1; //this takes fine tuning divide your videos FPS by two. My video's FPS was 30, 14 was the sweet spot. -1 fixes an issue on safari where the video disappears at the end of the scrollTrigger
+            videoScroll.currentTime = frameNumber;
+            }
+        }
+        });		    
+
+        /* Make sure the video is 'activated' on iOS */
+        function once(el, event, fn, opts) {
+        var onceFn = function (e) {
+            el.removeEventListener(event, onceFn);
+            fn.apply(this, arguments);
+        };
+        el.addEventListener(event, onceFn, opts);
+        return onceFn;
+        }			    
+
+        once(document.documentElement, "touchstart", function (e) {
+        videoScroll.play();
+        videoScroll.pause();
+        });
+
+        //make sure video has loaded
+        once(videoScroll, "loadedmetadata", function () {
+        videoScrollTL.fromTo(videoScroll, { currentTime: 0 }, { currentTime: videoScroll.duration - 0.10 });
+        });
+
+        //When first coded, the Blobbing was important to ensure the browser wasn't dropping previously played segments, but it doesn't seem to be a problem now. Possibly based on memory availability?
+        setTimeout(function () {
+        if (window["fetch"]) {
+            fetch(src).then(function (response) {
+            return response.blob();
+            }).then(function (response) {
+            var blobURL = URL.createObjectURL(response);
+            var t = videoScroll.currentTime;
+            once(document.documentElement, "touchstart", function (e) {
+                videoScroll.setAttribute("src", blobURL);
+                videoScroll.currentTime = t + 0.01;
+            });
+            });
+        }
+        }, 0);
+    </script>
+</body>
+</html>
