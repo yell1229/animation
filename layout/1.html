@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=`, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding:0;box-sizing: border-box;}
+        li{list-style: none;}
+        body{font-size:14px;}
+        header ul{display:flex;width:100%;}
+        header ul li{width:25%;background:gold;transition:all 0.5s}
+        header ul li:hover{width:35%;background:crimson;}
+        header ul li a{display:block;padding:1em;font-size:1rem;color:#fff;text-align:center;}
+        header .search_area{display:flex;height:40px;}
+        header .search_area input{flex-grow:1;margin-right:10px;font-size:1.2rem}
+        header .search_area button{border:0;padding:0 10px;}
+        .container{padding:2rem 0;}
+        .container .list li{display:flex;padding:1rem 0;}
+        .container .list li:before{content:'→';margin-right:0.5rem;}
+        .container .photo_list li{display:flex;margin-bottom:1rem;}
+        .container .photo_list figure{width:50px;height:50px;border-radius: 50%;background:gold;border:2px solid #000;background-size:cover;margin-right:0.5rem;flex-shrink:0;align-self:center}
+        .container .photo_list .ele{overflow:hidden;text-overflow: ellipsis;white-space:nowrap;align-self:center}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="">menu 01</a></li>
+                <li><a href="">menu 02</a></li>
+                <li><a href="">menu 03</a></li>
+                <li><a href="">menu 04</a></li>
+            </ul>
+        </nav>
+        <div class="search_area">
+            <input type="search">
+            <button>검색</button>
+        </div>
+    </header>
+    <div class="container">
+        <ul class="list">
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis atque perferendis, facere quos animi eaque error corrupti! Quos, facilis?</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et minima odit nam quas aliquam tempore.</li>
+            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis adipisci aliquid saepe impedit minus accusamus, vero numquam! Perspiciatis, molestias sequi?</li>
+        </ul>
+        <ul class="photo_list">
+            <li>
+                <figure style="background-image:url(https://s.pstatic.net/static/www/mobile/edit/20250417_1095/upload_1744877529454rLjTe.png)"></figure>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, nihil magnam necessitatibus sapiente praesentium, a nisi in molestias atque quod voluptatem nulla perspiciatis commodi architecto esse? Aliquid, nobis? Sed cum quo pariatur, porro non dolor incidunt dignissimos, est doloribus inventore distinctio repellat, nesciunt dicta molestias corrupti similique fuga temporibus. Neque ratione minus consectetur, molestiae, repudiandae nesciunt recusandae distinctio voluptatem cum repellendus suscipit dolores provident molestias animi quis? Fugiat illum quo hic aperiam voluptates. Nulla molestias aspernatur fugit excepturi quo rem magni ipsum maxime tempora, magnam consequuntur ea sint voluptatum facere molestiae, adipisci enim nostrum vel neque harum, tenetur natus est?</p>
+            </li>
+        </ul>
+        <ul class="photo_list">
+            <li>
+                <figure style="background-image:url(https://s.pstatic.net/static/www/mobile/edit/20250417_1095/upload_1744877529454rLjTe.png)"></figure>
+                <p class="ele">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            </li>
+            <li>
+                <figure style="background-image:url(https://s.pstatic.net/static/www/mobile/edit/20250417_1095/upload_1744877529454rLjTe.png)"></figure>
+                <p class="ele">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            </li>
+            <li>
+                <figure style="background-image:url(https://s.pstatic.net/static/www/mobile/edit/20250417_1095/upload_1744877529454rLjTe.png)"></figure>
+                <p class="ele">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

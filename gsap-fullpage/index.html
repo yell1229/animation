@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fullpage연습</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <ul class="nav">
+            <li><a href="#section01">menu01</a></li>
+            <li><a href="#section02">menu02</a></li>
+            <li><a href="#section03">menu03</a></li>
+            <li><a href="#section04">menu04</a></li>
+            <li><a href="#section05">menu05</a></li>
+            <li><a href="#section06">menu06</a></li>
+            <li><a href="#section07">menu07</a></li>
+        </ul>
+        <div class="section" id="section01">Section 1</div>
+        <div class="section" id="section02">Section 2</div>
+        <div class="section" id="section03">Section 3</div>
+        <div class="section" id="section04">Section 3</div>
+        <div class="section" id="section05">Section 4</div>
+        <div class="section" id="section06">Section 5</div>
+        <div class="section" id="section07">Section 6</div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- gsap -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollToPlugin.min.js"></script>
+    <script>
+        window.addEventListener('load',() =>{
+            let links = gsap.utils.toArray(".nav li a");
+
+            links.forEach(link => {
+                let element = document.querySelector(link.getAttribute("href"));
+                let linkST = ScrollTrigger.create({
+                    trigger: element,
+                    start: "top top"
+                });
+
+                ScrollTrigger.create({
+                    trigger: element,
+                    start: "top center",
+                    end: "bottom center",
+                    onToggle: self => setActive(link)
+                });
+
+                link.addEventListener("click", e => {
+                    e.preventDefault();
+                    gsap.to(window, {duration: 1, scrollTo: linkST.start, overwrite: "auto"});
+                })
+            });
+
+            function setActive(link){
+                links.forEach(el => el.classList.remove("active"));
+                link.classList.add("active");
+            }
+        });
+    </script>
+</body>
+</html>
