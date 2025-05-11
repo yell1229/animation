@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll</title>
+    <style>
+        *{margin:0;padding:0;}
+        .wrap{position:relative;}
+        .wrap > [id ^= smart]{height:100vh;border:1px solid #000}
+        .q_menu{position:sticky;top:0;right:10px;width:100%;display:flex;justify-content: space-between;}
+        /* .q_menu a{display:block;} */
+        .q_menu a.on{color:red}
+    </style>
+</head>
+<body>
+    
+    <div class="wrap">
+        <div class="q_menu" id="scrollBanner">
+            <a href="smart01">smart01</a>
+            <a href="smart02">smart02</a>
+            <a href="smart03">smart03</a>
+            <a href="smart04">smart04</a>
+            <a href="smart05">smart05</a>
+        </div>
+        <div id="smart">top</div>
+        <div id="smart01">smart01</div>
+        <div id="smart02">smart02</div>
+        <div id="smart03">smart03</div>
+        <div id="smart04">smart04</div>
+        <div id="smart05">smart05</div>
+        
+    </div>
+
+    <script type="text/javascript" src="https://img2s.mbest.co.kr/common_js/junior/jquery_recent.js"></script>
+    <script>
+        (function(){
+            let targets = ['#smart01','#smart02','#smart03','#smart04','#smart05'];
+            let menuEl = document.querySelector('.q_menu');
+            let menuTargetEl = menuEl.querySelectorAll('a');
+            let smartElTop = [];
+
+            targets.forEach((el, i)=>{
+                smartElTop[i]=document.querySelector(el).getBoundingClientRect().top + window.scrollY;   
+            });
+            
+            window.addEventListener('scroll',()=>{
+                let scrollY = window.scrollY;
+                if(scrollY > smartElTop[0]){
+                    menuTargetEl.forEach((el)=>{
+                        el.classList.remove('on');
+                    });      
+                }
+
+                for(let i = 0; i < targets.length; i++){
+                    console.log(smartElTop[i], scrollY);
+                    
+                    if(smartElTop[i] <= scrollY){
+                        menuTargetEl.forEach((el)=>{
+                            el.classList.remove('on');
+                        });   
+                        menuTargetEl[i].classList.add('on');
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

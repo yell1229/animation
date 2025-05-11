@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll test</title>
+    <style>
+        *{margin:0;padding:0;}
+        li{list-style: none;}
+        .wrap{position:relative;}
+        .top_area{height:50vh;}
+        .contents{position:relative;}
+        nav{position:sticky;top:0;left:0;z-index:10;}
+        nav ul{display: flex;width:100%;height:50px;}
+        nav ul li{display:flex;justify-content: center;align-items:center;flex-grow: 1;border:1px solid #333;background-color: #fff;cursor: pointer;}
+        nav ul li.on{color:#fff;background-color: #333;}
+        .ani{width:50vw;height:30vh;background-color: rgb(180, 180, 180);}
+        .contents > div[class ^='cont']{position:relative;height:100vh;}
+        .contents .ani{position:absolute;opacity: 0;transition: all 1s;}
+        .cont01{background-color: rgb(245, 218, 183);}
+        .cont01 .ani{bottom:10%;left:10%}
+        .cont01 .ani.on{transform:translateY(30%);opacity: 1;}
+        .cont02{background-color: rgb(199, 225, 164);}
+        .cont02 .ani{top:60%;right:0%}
+        .cont02 .ani.on{transform:translatex(-30%);opacity: 1;}
+        .cont03{background-color: rgb(192, 250, 248);}
+        .cont03 .ani{top:40%;left:10%}
+        .cont03 .ani.on{transform:translateY(60%);opacity: 1;}
+        .cont04{background-color: rgb(217, 194, 250);}
+        .cont04 .ani{bottom:0%;right:10%}
+        .cont04 .ani.on{transform:translateY(-50%);opacity: 1;}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="top_area"></div>
+        <div class="contents">
+            <nav>
+                <ul>
+                    <li><a href="cont01">menu 01</a></li>
+                    <li><a href="cont02">menu 02</a></li>
+                    <li><a href="cont03">menu 03</a></li>
+                    <li><a href="cont04">menu 04</a></li>
+                </ul>
+            </nav>
+            <div class="cont01">
+                cont01
+                <div class="ani"></div>
+            </div>
+            <div class="cont02">
+                cont02
+                <div class="ani"></div>
+            </div>
+            <div class="cont03">
+                cont03
+                <div class="ani"></div>
+            </div>
+            <div class="cont04">
+                cont04
+                <div class="ani"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+    (function(){
+        let navLists = document.querySelectorAll('nav li');
+        let targetLinks = document.querySelectorAll('nav li a');
+        let targets = ['cont01','cont02','cont03','cont04'];
+        let targetsTop = [];
+        let scrollEls = document.querySelectorAll('.ani');
+        // contents top
+        targets.forEach((el, i) => {      
+            let ele =  document.querySelector(`.${el}`);
+            targetsTop[i] = ele.getBoundingClientRect().top + window.scrollY;
+        });
+
+        // ani functions
+        const elementInView = (el,trigger = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            console.log(elementTop);
+            return (elementTop <= ( window.innerHeight || document.documentElement.clientHeight)/trigger );
+        }
+        const elementOutofView = (el) => {
+            const elementTop = el.getBoundingClientRect().top;
+            console.log(elementTop);
+            return (elementTop > ( window.innerHeight || document.documentElement.clientHeight) );
+        }
+
+        window.addEventListener('scroll',()=>{
+            let scrollY = window.scrollY;
+            // nav
+            targets.forEach((el, i) => {      
+                if(scrollY >= targetsTop[i]){
+                    navLists.forEach(el =>{
+                        el.classList.remove('on'); 
+                    })  
+                    navLists[i].classList.add('on'); 
+                }
+                if(scrollY < targetsTop[0]){
+                    navLists[0].classList.remove('on'); 
+                }
+            });
+            
+            // ani
+            scrollEls.forEach(el =>{
+                if(elementInView(el, 1.25)){
+                    el.classList.add('on');
+                }else if(elementOutofView(el)){
+                    el.classList.remove('on');
+                }
+            });
+
+        });// scroll event
+
+        // nav target scroll
+        targetLinks.forEach((el,i) =>{
+            el.addEventListener('click',(e)=>{
+                e.preventDefault();
+                window.scrollTo({top:targetsTop[i], behavior:'smooth'});   
+            });
+        });
+
+    })();
+
+    // console.log('innerHeight : ',window.innerHeight); // scrollbar 포함
+    // console.log('clientHeight : ',document.documentElement.clientHeight); // content + padding
+    // console.log('offsetHeight : ',document.documentElement.offsetHeight); // content + padding + border 문서의 전체 높이
+    // console.log('scrollHeight : ',document.documentElement.scrollHeight); // content + padding + border + scrollbar
+
+    </script>
+</body>
+</html>
