@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tab</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing: border-box;}
+        li{list-style: none;}
+        .cont01, .cont02{position:relative;padding:50px 0}
+        .tab_box{position:relative;width:1100px;}
+        .tab_box .tab{display:flex;width:100%;height:60px;}
+        .tab_box .tab li{display:flex;border:1px solid #333;flex-grow: 1;justify-content: center;align-items: center;cursor: pointer;}
+        .tab_box .tab li.active{background:#333;color:#fff;}
+        .tab_contArea{position:relative;height:500px;}
+        .tab_contArea > div{position:absolute;top:0;left:0;width:100%;height:100%;}
+        .tab_contArea div:nth-child(1){background:#fbc0c0}
+        .tab_contArea div:nth-child(2){background:#bdb6f1}
+        .tab_contArea div:nth-child(3){background:#b1efac}
+        .tab_contArea div:nth-child(4){background:#e7da98}
+        .tab_contArea div.active{z-index:10;}
+    </style>
+</head>
+<body>
+    <div class="cont01">
+        <div class="tab_box tab_box1">
+            <ul class="tab">
+                <li data-target="tab01" class="active">menu 01</li>
+                <li data-target="tab02">menu 02</li>
+                <li data-target="tab03">menu 03</li>
+                <li data-target="tab04">menu 04</li>
+            </ul>
+            <div class="tab_contArea">
+                <div class="tab01 active">cont01</div>
+                <div class="tab02">cont02</div>
+                <div class="tab03">cont03</div>
+                <div class="tab04">cont04</div>
+            </div>
+        </div>
+    </div>
+    <div class="cont02">
+        <div class="tab_box tab_box2">
+            <ul class="tab">
+                <li data-target="tab01" class="active">menu 01</li>
+                <li data-target="tab02">menu 02</li>
+                <li data-target="tab03">menu 03</li>
+                <li data-target="tab04">menu 04</li>
+            </ul>
+            <div class="tab_contArea">
+                <div class="tab01 active">cont01</div>
+                <div class="tab02">cont02</div>
+                <div class="tab03">cont03</div>
+                <div class="tab04">cont04</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const tabBoxes = document.querySelectorAll('.tab_box');
+
+        tabBoxes.forEach(tabBox => {
+            const navList = tabBox.querySelectorAll('.tab li');
+            const tabContAreaBox = tabBox.querySelectorAll('.tab_contArea > div');
+
+            navList.forEach((nav, i) => {
+                nav.addEventListener('mouseenter', () => {
+                    handleTab(nav, navList, tabContAreaBox, i);
+                });
+            });
+        });
+
+        const handleTab = (nav, navList, tabContAreaBox, i) => {
+            console.log(nav, navList, tabContAreaBox, i);
+            
+            // tab nav
+            navList.forEach((nav) => {
+                nav.classList.remove('active');
+            });
+            nav.classList.add('active');
+            
+            tabContAreaBox.forEach((box) => {
+                box.classList.remove('active');
+            })
+            tabContAreaBox[i].classList.add('active');
+        };
+
+        // jquery
+        // $('.tab_box2 .tab li').on('mouseenter',function(){
+        //     $('.tab_box2 .tab li').each(function(){
+        //         $(this).removeClass('active');
+        //     });
+        //     $(this).addClass('active');
+
+        //     let targetCont = $(this).attr('data-target');
+        //     $('.tab_box2 .tab_contArea div').each(function(){
+        //         $(this).removeClass('active');
+        //     })
+        //     $(`.tab_box2 .${targetCont}`).addClass('active');
+  
+        // });
+    </script>
+</body>
+</html>
