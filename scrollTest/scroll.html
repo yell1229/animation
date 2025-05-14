@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll</title>
+    <style>
+        *{margin:0;padding:0;}
+        li{list-style: none;}
+        .wrap{position:relative;}
+        .top_area{height:50vh;}
+        .contents{position:relative;}
+        nav{position:sticky;top:0;left:0;z-index:10;}
+        nav ul{display: flex;width:100%;height:50px;}
+        nav ul li{display:flex;justify-content: center;align-items:center;flex-grow: 1;border:1px solid #333;background-color: #fff;cursor: pointer;}
+        nav ul li.on{color:#fff;background-color: #333;}
+        .ani{width:50vw;height:30vh;background-color: rgb(180, 180, 180);}
+        .contents > div[class ^='cont']{position:relative;height:100vh;}
+        .contents .ani{position:absolute;opacity: 0;transition: all 1s;}
+        .cont01{background-color: rgb(245, 218, 183);}
+        .cont01 .ani{bottom:10%;left:10%}
+        .cont01 .ani.on{transform:translateY(30%);opacity: 1;}
+        .cont02{height:300vh !important;background-color: rgb(199, 225, 164);}
+        .cont02 .ani{top:60%;right:0%}
+        .cont02 .ani.on{transform:translatex(-30%);opacity: 1;}
+        .cont03{background-color: rgb(192, 250, 248);}
+        .cont03 .ani{top:40%;left:10%}
+        .cont03 .ani.on{transform:translateY(60%);opacity: 1;}
+        .cont04{background-color: rgb(217, 194, 250);}
+        .cont04 .ani{bottom:0%;right:10%}
+        .cont04 .ani.on{transform:translateY(-50%);opacity: 1;}
+    </style>
+</head>
+<body>
+    <div class="top_area"></div>
+        <div class="contents">
+            <div class="cont01">
+                cont01
+                <div class="ani"></div>
+            </div>
+            <div class="cont02">
+                cont02
+                <div class="ani"></div>
+            </div>
+            <div class="cont03">
+                cont03
+                <div class="ani"></div>
+            </div>
+            <div class="cont04">
+                cont04
+                <div class="ani"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let cont02 = document.querySelector('.cont02 .ani');
+        
+        window.addEventListener('scroll',()=>{
+            let scrollY = window.scrollY;
+            let cont02Top = cont02.getBoundingClientRect().top;
+            console.log(cont02Top , window.innerHeight * 0.75);
+            
+            if(cont02Top <= window.innerHeight * 0.6){
+                cont02.classList.add('on');
+            }
+        })
+    </script>
+</body>
+</html>
