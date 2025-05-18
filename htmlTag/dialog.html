@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>popup</title>
+    <style>
+        dialog{width:50vw;height:50vh;}
+       dialog:-internal-dialog-in-top-layer::backdrop{    background: rgba(0, 0, 0, 0.5);}
+    </style>
+</head>
+<body>
+    <dialog>
+        <div>popup test</div>
+        <p>lorem</p>
+        <button onClick="document.querySelector('dialog').close();">닫기</button>
+    </dialog>
+    <button onClick="document.querySelector('dialog').showModal();">open</button>
+</body>
+</html>

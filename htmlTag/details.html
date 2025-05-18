@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        details{border:1px solid #333;border-radius: 5px;}
+        details summary{font-weight: bold;padding:10px;list-style:none;cursor:pointer; border-bottom:1px solid #333;;}
+        /* details[open]{} */
+
+        .details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 1s ease-in-out; 
+            display:block;
+        }
+
+        #slideDetails[open] .details-content {
+            /* max-height: 500px; 충분히 큰 값으로 설정하거나 JavaScript로 실제 높이 계산 */
+        }
+    </style>
+</head>
+<body>
+    <!-- select -->
+     <details open> <!-- defailt open 상태 -->
+        <summary>select box</summary>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam hic quas ut id rerum nihil ipsam doloribus facere veniam totam accusamus reprehenderit in animi nam ipsa, sunt officiis, eveniet non.</p>
+     </details>
+    <!-- // select -->
+
+    <details id="slideDetails">
+        <summary>슬라이드 효과</summary>
+        <div class="details-content">
+            <p>숨겨진 내용 1</p>
+            <p>숨겨진 내용 2</p>
+            <p>숨겨진 내용 3</p>
+        </div>
+    </details>
+    <script>
+  const details = document.getElementById('slideDetails');
+const content = details.querySelector('.details-content');
+
+details.addEventListener('toggle', (e) => {
+    e.preventDefault();
+  if (details.open) {
+    // 열릴 때: 실제 높이로 트랜지션
+    content.style.maxHeight = `${content.scrollHeight}px`;
+  } else {
+    // 닫힐 때: 0으로 트랜지션
+    setTimeout(() => {
+        content.style.maxHeight = '0px';
+    },10);
+    
+  }
+});
+</script>
+</body>
+</html>
