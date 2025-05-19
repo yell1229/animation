@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tab{display: flex;}
+        .tab li{width:200px;height:80px;border:1px solid #333;list-style: none;}
+        .tab li img{width:100%;height:100%;}
+    </style>
+</head>
+<body>
+    <ul class="tab">
+        <li><img src="img/a_on.gif" alt=""></li>
+        <li><img src="img/b_off.gif" alt=""></li>
+        <li><img src="img/c_off.gif" alt=""></li>
+    </ul>
+    <script>
+        let tabEle = document.querySelector('.tab');
+        let liEle = tabEle.querySelectorAll('li');
+        let currentOn = tabEle.querySelector('img[src $="_on.gif"]');
+        
+        liEle.forEach(el => {
+            el.addEventListener('click',() =>{
+                // 현재 이미지 끄기
+                if(currentOn){
+                    let currentSrc = currentOn.src;
+                    currentOn.src = currentSrc.replace('_on.gif','_off.gif');
+                }
+                // 클릭이미지 켜기
+                let clickImg = el.querySelector('img');
+                let clickSrc = clickImg.src;
+                clickImg.src = clickSrc.replace('_off.gif','_on.gif');
+                // 켜진 이미지 업데이트
+                currentOn = clickImg;
+            });
+        })
+    </script>
+</body>
+</html>
